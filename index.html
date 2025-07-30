@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rohit's Portfolio</title>
+    <link rel="icon" type="image/png" href="tablogo.png" />
     <!-- Inter font for clean modern body text -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Fira Code for monospace intro text like “Hi, my name is” -->
@@ -37,77 +38,78 @@
 
         /* Navigation */
         .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--primary-bg);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            transition: all 0.3s ease;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: var(--primary-bg);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0; /* no side padding here */
+        transition: all 0.3s ease;
         }
 
-       .nav-container {
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 2rem;  /* Add this for spacing from edges */
         }
 
-
-
-       .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: #64ffda;
+        .logo-img {
+        height: 32px;
+        width: auto;
         }
 
         .nav-links {
-            margin-left: auto;
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
         }
 
-
         .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        position: relative;
+        font-size: 0.95rem;
         }
 
         .nav-links a:hover {
-            color:#64ffda; ;
+        color: var(--accent-color);
         }
 
         .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-gradient);
-            transition: width 0.3s ease;
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-gradient);
+        transition: width 0.3s ease;
         }
 
         .nav-links a:hover::after {
-            width: 100%;
+        width: 100%;
+        }
+
+        .resume-btn {
+        border: 1px solid var(--accent-color);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-weight: 600;
         }
 
         .navbar.scrolled {
-        background-color: var(--primary-bg); /* Keep same background on scroll */
+        background-color: var(--primary-bg);
         }
+
+
 
         /* Hero Section */
         .hero {
@@ -273,42 +275,47 @@
             filter: grayscale(0%);
         }
 
-        /* Skills Section */
-        .skills {
-            padding: 5rem 2rem;
-            background: var(--primary-bg);
+        /* Inline Skill Tags inside About Section */
+        .inline-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1rem; /* vertical and horizontal spacing */
+            margin-top: 1rem;
         }
 
-        .skills-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .tag {
+            background: rgba(100, 255, 218, 0.08);
+            color: #64ffda;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background 0.3s ease;
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        .tag:hover {
+            background: rgba(100, 255, 218, 0.15);
         }
 
-        .skill-card {
-            background: var(--primary-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            transition: all 0.3s ease;
+
+        /* logo */
+        .logo-img {
+            height: 40px; /* adjust size as needed */
+            width: auto;
+            display: block;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: left;
+            /* Remove these if you had them: */
+            background: none;
+            
         }
 
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
 
         /* Projects Section */
         .projects {
@@ -461,9 +468,16 @@
         .footer {
             padding: 2rem;
             text-align: center;
-            border-top: 1px solid rgba(102, 126, 234, 0.2);
             color: var(--text-secondary);
         }
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem; /* smaller text */
+            /* border-top: 1px solid rgba(102, 126, 234, 0.2); */ /* optional: remove or lighten */
+        }
+
 
         /* Animations */
         @keyframes fadeInUp {
@@ -746,6 +760,23 @@
                 transform: translateY(0) scale(1);
             }
         }
+        .navbar {
+            animation: slideInDown 0.8s ease-out forwards;
+            animation-delay: 0.1s;
+            opacity: 0; /* start hidden */
+        }
+
+        @keyframes slideInDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-40px);
+            }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+            }
+        }
+
 
         /* Scroll animations */
         .animate-on-scroll {
@@ -911,12 +942,13 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#home" class="logo">R</a>
+            <a href="#home" class="logo">
+                <img src="tablogo.png" alt="Logo" class="logo-img" />
+            </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#work">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -946,16 +978,26 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p style="text-align: justify;">Im Rohit Gadekar, a Mechanical Engineer with a strong interest in project management and technology-driven problem-solving. With experience across engineering design, operations, and cross-functional collaboration, I’ve led impactful projects like improving service KPIs, optimizing packaging design, and contributing to EV development.</p>
+                    <p style="text-align: justify;">I'm Rohit Gadekar, a Mechanical Engineer with a strong interest in project management and technology-driven problem-solving. With experience across engineering design, operations, and cross-functional collaboration, I’ve led impactful projects like improving service KPIs, optimizing packaging design, and contributing to EV development.</p>
                     <br>
-                    <p>I enjoy turning ideas into actionable solutions and thrive in roles where I can blend technical skills, strategic thinking, and teamwork to drive efficiency and innovation.</p>
+                    <p style="text-align: justify;">I enjoy turning ideas into actionable solutions and thrive in roles where I can blend technical skills, strategic thinking, and teamwork to drive efficiency and innovation.</p>
+                     <h3 style="margin-top: 2rem; color: var(--accent-color); font-size: 1.1rem;">Skills</h3>
+                        <div class="inline-skills">
+                        <span class="tag">Python</span>
+                        <span class="tag">Project Management </span>
+                        <span class="tag">Windchill</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Tableau</span>
+                        <span class="tag">SolidWorks</span>
+                        <span class="tag">Data Analysis</span>
+                        <span class="tag">SQL</span>
                 </div>
+            </div>
                 <div class="about-image">
-                <div class="profile-card">
+                    <div class="profile-card">
                     <img src="1_img.JPG" style="width:50%; height:auto;">
                     <p></p>
                 </div>
-            </div>
             </div>
         </div>
     </section>
@@ -986,8 +1028,8 @@
 
             
           </div>
-
-          <div class="tab-contents">
+        <!-- Work ex -->
+          <div class="container">
             <div id="purdue" class="tab-content active">
               <h3> Juinor Design Engineer <span class="green">@ ALTEN Group</span></h3>
               <p class="date">August 2025 - Ongoing, Chhatrapati Sambhajinagar</p>
@@ -1047,48 +1089,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills section">
-        <div class="skills-container">
-            <div class="animate-on-scroll">
-                <h2 class="section-title">My Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon">⚛️</div>
-                        <h3>React</h3>
-                        <p>Building interactive UIs</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🟢</div>
-                        <h3>Node.js</h3>
-                        <p>Server-side development</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🍃</div>
-                        <h3>MongoDB</h3>
-                        <p>Database management</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🎨</div>
-                        <h3>UI/UX Design</h3>
-                        <p>Creating beautiful interfaces</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">⚡</div>
-                        <h3>JavaScript</h3>
-                        <p>Modern ES6+ development</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">🐍</div>
-                        <h3>Python</h3>
-                        <p>Backend & automation</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Projects Section -->
