@@ -324,64 +324,126 @@
             margin: 0 auto;
         }
 
-        .projects-grid {
+        .project {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            margin-top: 3rem;
+            align-items: center;
+            margin-bottom: 6rem;
         }
 
-        .project-card {
-            background: var(--secondary-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            transition: all 0.3s ease;
+        .project.reverse {
+            grid-template-columns: 1fr 1fr;
+            direction: rtl;
         }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .project.reverse .project-content {
+            direction: ltr;
         }
 
         .project-image {
-            height: 200px;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .project-content {
-            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+            padding-bottom: 4.5rem; /* extra space for the button */
+        }
+
+
+        .project-label {
+            font-size: 0.85rem;
+            color: #64ffda;
+            font-family: monospace;
         }
 
         .project-title {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-weight: 600;
             color: var(--text-primary);
         }
 
         .project-description {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 5px;
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .project-tags {
             display: flex;
-            gap: 0.5rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
         .tag {
-            background: rgba(102, 126, 234, 0.2);
-            color: var(--accent-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-family: monospace;
         }
+
+        .projects .section-title {
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* External link button */
+        .project-link {
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+            width: 40px; /* keep as in reference */
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            background: rgba(100, 255, 218, 0.08);
+            color: #64ffda;
+            text-decoration: none;
+            transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease;
+            z-index: 5;
+        }
+
+        .project-link svg {
+            width: 24px; /* bigger inside */
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .project-link:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
+            background: rgba(100, 255, 218, 0.15);
+            border-color: #64ffda;
+            color: #ffffff; /* white icon on hover */
+        }
+
+        .project-link.left-link {
+            right: auto; /* remove right positioning */
+            left: 16px;  /* stick to left */
+            bottom: 16px;
+        }
+
 
         /* Contact Section */
         .contact {
@@ -1096,45 +1158,76 @@
     <!-- Projects Section -->
     <section id="projects" class="projects section">
         <div class="animate-on-scroll">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">🚀</div>
-                    <div class="project-content">
-                        <h3 class="project-title">E-Commerce Platform</h3>
-                        <p class="project-description">A full-stack e-commerce solution with modern UI and secure payment integration.</p>
-                        <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">MongoDB</span>
-                        </div>
-                    </div>
+            <h2 class="section-title"> Key Projects</h2>
+
+            <!-- Project 1 -->
+            <div class="project">
+                <div class="project-image">
+                    <img src="batwing.jpg" alt="Bat-like Biomimetic Wing">
                 </div>
-                <div class="project-card">
-                    <div class="project-image">📱</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Social Media App</h3>
-                        <p class="project-description">Real-time social platform with messaging, posts, and user interactions.</p>
-                        <div class="project-tags">
-                            <span class="tag">React Native</span>
-                            <span class="tag">Firebase</span>
-                            <span class="tag">Socket.io</span>
-                        </div>
+                <div class="project-content">
+                    <p class="project-label">Featured Project</p>
+                    <h3 class="project-title">Bat-like Biomimetic Wing</h3>
+                    <div class="project-description">
+                        <p>
+                            This project is aimed at designing a robotic wing possessing morphing capabilities like a batwing,
+                            developing a multibody kinematic and dynamic model, implementing tensegrity-based actuation and
+                            control, and fabricating a prototype for achieving highly maneuverable artificial flight.
+                        </p>
+                        <p>
+                            This project has won the prestigious Student Innovation Grant by ARTPARK (AI & Robotics Technology Park) IISc Bangalore,
+                            awarded to 10 select projects across India.
+                        </p>
                     </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">🎯</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Task Management Tool</h3>
-                        <p class="project-description">Productivity app with team collaboration and project tracking features.</p>
-                        <div class="project-tags">
-                            <span class="tag">Vue.js</span>
-                            <span class="tag">Express</span>
-                            <span class="tag">PostgreSQL</span>
-                        </div>
+                    <div class="project-tags">
+                        <span class="tag">MATLAB</span>
+                        <span class="tag">Solidworks</span>
+                        <span class="tag">TIVA</span>
+                        <span class="tag">3D Printing</span>
                     </div>
+                   <a href="https://your-project-link.com" target="_blank" class="project-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+
                 </div>
             </div>
+
+            <!-- Project 2 -->
+            <div class="project reverse">
+                <div class="project-image">
+                    <img src="your-image-2.jpg" alt="Project 2 Image">
+                </div>
+                <div class="project-content">
+                    <p class="project-label">Featured Project</p>
+                    <h3 class="project-title">Next Cool Project</h3>
+                    <div class="project-description">
+                        <p>
+                            A short intro about your second project goes here.  
+                            Describe what it does and why it’s unique.
+                        </p>
+                        <p>
+                            Mention any achievements, grants, or recognition the project received.
+                        </p>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                    <a href="https://your-second-project-link.com" target="_blank" class="project-link left-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
