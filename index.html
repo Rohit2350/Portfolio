@@ -340,8 +340,30 @@
         .project.reverse .project-content {
             direction: ltr;
         }
+        .projects .section-title {
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            position: relative;
+        }
 
+        .projects .section-title::after {
+            content: "";
+            width: 500px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.12); /* subtle light gray line */
+            margin-left: 1rem; /* spacing between text and line */
+        }
+
+
+        /* Project image with green overlay hover */
         .project-image {
+            position: relative;
+            pointer-events: auto;
             width: 100%;
             border-radius: 10px;
             overflow: hidden;
@@ -352,6 +374,31 @@
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.4s ease;
+        }
+        .project-image::after {
+            pointer-events: none; /* so overlay won't block clicks */
+        }
+
+        /* green overlay */
+        .project-image::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(100, 255, 218, 0.3);
+            mix-blend-mode: multiply;
+            transition: opacity 0.4s ease;
+        }
+
+        /* hover effect: fade overlay + zoom image */
+        .project-image:hover::after {
+            opacity: 0;
+        }
+        .project-image:hover img {
+            transform: scale(1.05);
         }
 
         .project-content {
@@ -359,9 +406,8 @@
             flex-direction: column;
             gap: 1rem;
             position: relative;
-            padding-bottom: 4.5rem; /* extra space for the button */
+            padding-bottom: 4.5rem; 
         }
-
 
         .project-label {
             font-size: 0.85rem;
@@ -408,7 +454,7 @@
             position: absolute;
             right: 16px;
             bottom: 16px;
-            width: 40px; /* keep as in reference */
+            width: 40px;
             height: 40px;
             display: inline-flex;
             align-items: center;
@@ -423,8 +469,8 @@
         }
 
         .project-link svg {
-            width: 24px; /* bigger inside */
-            height: 24px;
+            width: 20px;
+            height: 20px;
             stroke: currentColor;
             fill: none;
             stroke-width: 2;
@@ -435,12 +481,12 @@
             box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
             background: rgba(100, 255, 218, 0.15);
             border-color: #64ffda;
-            color: #ffffff; /* white icon on hover */
+            color: #ffffff;
         }
 
         .project-link.left-link {
-            right: auto; /* remove right positioning */
-            left: 16px;  /* stick to left */
+            right: auto;
+            left: 16px;
             bottom: 16px;
         }
 
@@ -539,6 +585,41 @@
             font-size: 0.8rem; /* smaller text */
             /* border-top: 1px solid rgba(102, 126, 234, 0.2); */ /* optional: remove or lighten */
         }
+
+        /* Email */
+        .email-right {
+            position: fixed;
+            right: 40px; /* push from right edge */
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .email-right a {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: #ffffff; /* same accent color as GitHub */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .email-right a:hover {
+            color: #64ffda;; /* change on hover */
+        }
+
+        .email-right::after {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 90px;
+            background-color: #ffffff;
+            margin-top: 1rem;
+        }
+
 
 
         /* Animations */
@@ -1039,7 +1120,7 @@
     <!-- About Section -->
     <section id="about" class="about section">
         <div class="animate-on-scroll">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title" style="text-align: left" >About Me</h2>
             <div class="about-content">
                 <div class="about-text">
                     <p style="text-align: justify;">I'm Rohit Gadekar, a Mechanical Engineer with a strong interest in project management and technology-driven problem-solving. With experience across engineering design, operations, and cross-functional collaboration, I’ve led impactful projects like improving service KPIs, optimizing packaging design, and contributing to EV development.</p>
@@ -1163,16 +1244,16 @@
             <!-- Project 1 -->
             <div class="project">
                 <div class="project-image">
-                    <img src="batwing.jpg" alt="Bat-like Biomimetic Wing">
+                    <a href="https://github.com/Rohit2350/Interactive-_Spotify_Dashboard-" target="_blank" rel="noopener noreferrer">
+                        <img src="Spo_dash.jpeg" alt="Interactive Spotify Dashboard">
+                    </a>
                 </div>
                 <div class="project-content">
-                    <p class="project-label">Featured Project</p>
-                    <h3 class="project-title">Bat-like Biomimetic Wing</h3>
+                    <p class="project-label" style="text-align: right">Featured Project</p>
+                    <h3 class="project-title" style="text-align: right">Interactive Spotify Dashboard</h3>
                     <div class="project-description">
                         <p>
-                            This project is aimed at designing a robotic wing possessing morphing capabilities like a batwing,
-                            developing a multibody kinematic and dynamic model, implementing tensegrity-based actuation and
-                            control, and fabricating a prototype for achieving highly maneuverable artificial flight.
+                            The Spotify Interactive Dashboard was made in PowerBI. DAX handled data cleaning, DENEB Library and HTML/CSS displayed visuals, and Python fetched Album Art links from Spotify API, stored in a CSV.
                         </p>
                         <p>
                             This project has won the prestigious Student Innovation Grant by ARTPARK (AI & Robotics Technology Park) IISc Bangalore,
@@ -1180,45 +1261,49 @@
                         </p>
                     </div>
                     <div class="project-tags">
-                        <span class="tag">MATLAB</span>
-                        <span class="tag">Solidworks</span>
-                        <span class="tag">TIVA</span>
-                        <span class="tag">3D Printing</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">Spotify API</span>
                     </div>
-                   <a href="https://your-project-link.com" target="_blank" class="project-link">
+                    <a href="https://github.com/Rohit2350/Interactive-_Spotify_Dashboard-" target="_blank" class="project-link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M18 13v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
                         </svg>
                     </a>
-
                 </div>
             </div>
 
             <!-- Project 2 -->
+           <!-- Project 2 -->
             <div class="project reverse">
                 <div class="project-image">
-                    <img src="your-image-2.jpg" alt="Project 2 Image">
+                    <a href="https://github.com/Rohit2350/Customer_Segmentation_Dashboard" target="_blank" rel="noopener noreferrer">
+                        <img src="cus_seg.png" alt="Segmentify 'Insightful customer Segmentation'">
+                    </a>
                 </div>
                 <div class="project-content">
                     <p class="project-label">Featured Project</p>
-                    <h3 class="project-title">Next Cool Project</h3>
+                    <h3 class="project-title">Segmentify "Insightful customer Segmentation"</h3>
                     <div class="project-description">
                         <p>
-                            A short intro about your second project goes here.  
-                            Describe what it does and why it’s unique.
+                            The purpose of this project is to conduct a Customer Segmentation Analysis for a Shopping mart. 
+                            Customer segmentation is performed by developing a RFM Model. RFM (Recency, Frequency, Monetary) 
+                            analysis is a behavior-based approach grouping customers into segments.
                         </p>
                         <p>
-                            Mention any achievements, grants, or recognition the project received.
+                            hello
                         </p>
                     </div>
                     <div class="project-tags">
                         <span class="tag">Python</span>
-                        <span class="tag">Django</span>
-                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">RFM Model</span>
                     </div>
-                    <a href="https://your-second-project-link.com" target="_blank" class="project-link left-link">
+                    <a href="https://github.com/Rohit2350/Customer_Segmentation_Dashboard" target="_blank" class="project-link left-link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M18 13v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
@@ -1226,6 +1311,8 @@
                         </svg>
                     </a>
                 </div>
+            </div>
+
             </div>
 
         </div>
@@ -1263,7 +1350,10 @@
         </div>
     <div class="github-line"></div>
     </a>
-
+    <!-- Email -->
+    <div class="email-right">
+    <a href="mailto:yourmail@example.com">yourmail@example.com</a>
+</div>
 
     <!-- Footer -->
     <footer class="footer">
